@@ -1,1 +1,1 @@
-print ("Python")
+ptint("Python education")
