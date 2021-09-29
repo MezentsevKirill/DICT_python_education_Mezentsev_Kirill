@@ -21,3 +21,20 @@ while x <= num:
     print("" + str(x) + "!")
     x += 1
 print("Completed, have a nice day!")
+# Stage 5
+print("Let's test your programming knowledge")
+print("Which companies provide the most popular cloud services?")
+print("1. Google")
+print("2. Adobe")
+print("3. Steam")
+print("4. Mozilla")
+chek = False
+while (chek == False):
+    a = int(input("< "))
+    if a == 1:
+        chek = True
+        print("Completed, have a nice day!")
+    else:
+        print("Please, try again")
+
+print("Congratulations, have a nice day!")
