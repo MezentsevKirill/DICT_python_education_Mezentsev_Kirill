@@ -16,3 +16,37 @@ if my_str1 == random.choice(my_list1):
     print("You survived!")
 else:
     print("You lost")
+# Stage 4
+word = random.choice(my_list1)
+# First if
+if my_list1[0] == word:
+    print("Guess the word: pyt--- > ")
+    my_str2 = input()
+    if my_str2 == my_list1[0]:
+        print("You survived!")
+    else:
+        print("You lost")
+# Second if
+if my_list1[1] == word:
+    print("Guess the word: jav- > ")
+    my_str3 = input()
+    if my_str3 == my_list1[1]:
+        print("You survived!")
+    else:
+        print("You lost")
+# Third if
+if my_list1[2] == word:
+    print("Guess the word: jav------- > ")
+    my_str4 = input()
+    if my_str4 == my_list1[2]:
+        print("You survived")
+    else:
+        print("You lost")
+# Fourth if
+if my_list1[3] == word:
+    print("Guess the word: --- > ")
+    my_str5 = input()
+    if my_str5 == my_list1[3]:
+        print("You survived")
+    else:
+        print("You lost")
