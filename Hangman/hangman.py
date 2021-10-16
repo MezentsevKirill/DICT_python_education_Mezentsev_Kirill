@@ -50,3 +50,33 @@ if my_list1[3] == word:
         print("You survived")
     else:
         print("You lost")
+# Stage 5
+new_word = random.choice(my_list1)
+guessed_letters = ["p", "y", "t", "h", "o", "n", "j", "a", "v", "s", "c", "r", "i"]
+word_completion = "_" * len(new_word)
+guessed = False
+tries = 8
+while not guessed and tries > 0:
+    print(word_completion)
+    print("\n")
+    guess = input("Input a letter: > ")
+    guessed_letters.append(guess)
+    word_as_list = list(word_completion)
+    indices = [i for i, letter in enumerate(new_word) if letter == guess]
+    for index in indices:
+        word_as_list[index] = guess
+        word_completion = "".join(word_as_list)
+    if "_" not in word_completion:
+        guessed = True
+    if len(guess) == 1 and guess.isalpha():
+        if guess in new_word:
+            print("Good job,", guess, "is in the word!")
+            print("\n")
+            tries -= 1
+        else:
+            print("That letter doesn't appear in the word")
+            tries -= 1
+if word_completion == new_word:
+    print("Thanks for playing!\nWe'll see how well you did in the next stage")
+else:
+    print("Sorry, you ran out of tries. The word was " + new_word + ". Maybe next time!")
