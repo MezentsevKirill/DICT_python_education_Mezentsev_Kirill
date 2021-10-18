@@ -151,3 +151,45 @@ if word_completion == new_word:
     print("You guessed the word!\nYou survived!")
 else:
     print("Sorry, you ran out of tries. The word was " + new_word + ". Maybe next time!")
+# Stage 8
+new_word = random.choice(my_list1)
+guessed_letters = []
+word_list = ["play", "exit"]
+word_completion = "_" * len(new_word)
+sliced_word = list(new_word)
+guessed = False
+tries = 8
+word = input("Type play to play the game, exit to quit: > ")
+if word == word_list[-1]:
+    def play():
+       return 0
+if word == word_list[0]:
+    while not guessed and tries > 0:
+        print(word_completion)
+        print("\n")
+        guess = input("Input a letter: > ")
+        guessed_letters.append(guess)
+        word_as_list = list(word_completion)
+        indices = [i for i, letter in enumerate(new_word) if letter == guess]
+        for index in indices:
+            word_as_list[index] = guess
+            word_completion = "".join(word_as_list)
+        if "_" not in word_completion:
+            guessed = True
+        if guess in new_word:
+            print("Good job,", guess, "is in the word!")
+            print("\n")
+        else:
+            print("That letter doesn't appear in the word")
+            tries -= 1
+            guessed_letters.count(guess)
+        if guessed_letters.count(guess) > 1:
+            print("You've already guessed this letter.")
+        if len(guess) > 1:
+            print("You should input a single letter")
+        if guess.isalpha() == False:
+            print("Please enter a lowercase English letter")
+if word_completion == new_word:
+    print("You guessed the word!\nYou survived!")
+else:
+    print("Sorry, you ran out of tries. The word was " + new_word + ". Maybe next time!")
