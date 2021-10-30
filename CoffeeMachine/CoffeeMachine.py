@@ -87,7 +87,8 @@ money = 550
 while action != action_list[4]:
     action = input("Write action (buy, fill, take, remaining, exit):\n > ")
     if action == action_list[0]:
-        coffee_class = str(input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, cappuccino, back – to main menu:\n > "))
+        coffee_class = str(input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, cappuccino,"
+                                 "back – to main menu:\n > "))
         if coffee_class == coffee_list[3]:
             action = 0
         if coffee_class == coffee_list[0]:
@@ -164,5 +165,115 @@ while action != action_list[4]:
         print("I gave you", money)
         money -= money
     if action == action_list[3]:
+        print("The coffee machine has:\n", water, "of water\n", milk, "of milk")
+        print(coffee_beans, "of coffee beans\n", disposable_cups, "of disposable cups\n", money, "of money")
+
+
+# Stage 6
+class DataInput:
+    coffee_list = ["1", "2", "3", "back"]
+    action_list = ["buy", "fill", "take", "remaining", "exit"]
+    condition_list = ["Choice of action", "Selection of the type of coffee"]
+
+    def __init__(self, action1, coffee_class1, condition):
+        self.action1 = action1
+        self.coffee_class1 = coffee_class1
+        self.condition = condition
+
+
+class CoffeeAdd:
+    def __init__(self, water_add1, milk_add1, coffee_beans_add1, disposable_cups_add1):
+        self.water_add1 = water_add1
+        self.milk_add1 = milk_add1
+        self.coffee_beans_add1 = coffee_beans_add1
+        self.disposable_cups_add1 = disposable_cups_add1
+
+
+DataInput.action1 = input("Write action (buy, fill, take, remaining, exit):\n > ")
+while DataInput.action1 != DataInput.action_list[4]:
+    DataInput.action1 = input("Write action (buy, fill, take, remaining, exit):\n > ")
+    if DataInput.action1 == DataInput.action_list[0]:
+        DataInput.coffee_class = str(input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino,"
+                                           " cappuccino,""back – to main menu:\n > "))
+        DataInput.condition = "Selection of the type of coffee"
+        if DataInput.coffee_class == DataInput.coffee_list[3]:
+            action = 0
+        if DataInput.coffee_class == DataInput.coffee_list[0]:
+            water1 = 250
+            coffee_beans1 = 16
+            disposable_cups1 = 1
+            money1 = 4
+            if water > 250 and coffee_beans > 16 and disposable_cups > 1:
+                print("I have enough resources, making you a coffee!")
+                water -= water1
+                coffee_beans -= coffee_beans1
+                disposable_cups -= disposable_cups1
+                money += money1
+            else:
+                if water < 250:
+                    print("Sorry, not enough water!")
+                if coffee_beans < 16:
+                    print("Sorry, not enough coffee beans!")
+                if disposable_cups < 1:
+                    print("Sorry, not enough disposable cups!")
+        if DataInput.coffee_class == DataInput.coffee_list[1]:
+            water2 = 350
+            milk2 = 75
+            coffee_beans2 = 20
+            disposable_cups2 = 1
+            money2 = 7
+            if water > 350 and milk > 75 and coffee_beans > 20 and disposable_cups > 1:
+                print("I have enough resources, making you a coffee!")
+                water -= water2
+                milk -= milk2
+                coffee_beans -= coffee_beans2
+                disposable_cups -= disposable_cups2
+                money += money2
+            else:
+                if water < 350:
+                    print("Sorry, not enough water!")
+                if milk < 75:
+                    print("Sorry, not enough milk!")
+                if coffee_beans < 20:
+                    print("Sorry, not enough coffee beans!")
+                if disposable_cups < 1:
+                    print("Sorry, not enough disposable cups!")
+        if DataInput.coffee_class == DataInput.coffee_list[2]:
+            water3 = 200
+            milk3 = 100
+            coffee_beans3 = 12
+            disposable_cups3 = 1
+            money3 = 6
+            if water > 200 and milk > 100 and coffee_beans > 12 and disposable_cups > 1:
+                print("I have enough resources, making you a coffee!")
+                water -= water3
+                coffee_beans -= coffee_beans3
+                disposable_cups -= disposable_cups3
+                money += money3
+            else:
+                if water < 200:
+                    print("Sorry, not enough water!")
+                if milk < 100:
+                    print("Sorry, not enough milk!")
+                if coffee_beans < 12:
+                    print("Sorry, not enough coffee beans!")
+                if disposable_cups < 1:
+                    print("Sorry, not enough disposable cups!")
+    if DataInput.action1 == DataInput.action_list[1]:
+        DataInput.condition = "Choice of action"
+        CoffeeAdd.water_add1 = int(input("Write how many ml of water you want to add:\n > "))
+        CoffeeAdd.milk_add1 = int(input("Write how many ml of milk you want to add:\n > "))
+        CoffeeAdd.coffee_beans_add1 = int(input("Write how many grams of coffee beans you want to add:\n > "))
+        CoffeeAdd.disposable_cups_add1 = int(input("Write how many disposable coffee cups you want to add:\n > "))
+        water += CoffeeAdd.water_add1
+        milk += CoffeeAdd.milk_add1
+        coffee_beans += CoffeeAdd.coffee_beans_add1
+        disposable_cups += CoffeeAdd.disposable_cups_add1
+    if DataInput.action1 == DataInput.action_list[2]:
+        DataInput.condition = "Choice of action"
+        print("I gave you", money)
+        money -= money
+    if DataInput.action1 == DataInput.action_list[3]:
+        DataInput.condition = "Choice of action"
         print("The coffee machine has:\n", water, "of water\n", milk, "of milk")
         print(coffee_beans, "of coffee beans\n", disposable_cups, "of disposable cups\n", money, "of money")
