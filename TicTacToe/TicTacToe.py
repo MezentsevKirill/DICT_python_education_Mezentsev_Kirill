@@ -160,3 +160,108 @@ def play_game():
 
 
 play_game()
+# Stage 5
+
+
+def handle_turn1():
+    valid = False
+    while not valid:
+        try:
+            z = int(input("Choose a position 1 - 3: "))
+            y = int(input("Choose a position 1 - 3: "))
+        except ValueError:
+            print(print("You should enter numbers!"))
+            valid = False
+        else:
+            if z <= 3 and y <= 3:
+                if z == 1:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 1:
+                    position = z * int(y) + 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 2:
+                    position = int(z) * int(y)
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 3:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 1:
+                    position = z * int(y) + 3
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 2:
+                    position = z * int(y) + 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 3:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "O"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+            else:
+                print("Coordinates should be from 1 to 3!")
+                valid = False
+
+
+game_list.clear()
+game_list = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]
+counter = 0
+win = False
+while not win:
+    draw_board()
+    if counter % 2 == 0:
+        handle_turn()
+    else:
+        handle_turn1()
+    counter += 1
+    if game_list[0:3] == x or game_list[3:6] == x or game_list[6:] == x or game_list[0:None:3] == x \
+            or game_list[1:None:3] == x or game_list[2:None:3] == x \
+            or game_list[0:None:4] == x or game_list[-7:-1:2] == x:
+        print("X wins")
+        draw_board()
+        win = True
+    elif game_list[0:3] == o or game_list[3:6] == o or game_list[6:] == o or game_list[0:None:3] == o \
+            or game_list[1:None:3] == o or game_list[2:None:3] == o \
+            or game_list[0:None:4] == o or game_list[-7:-1:2] == o:
+        print("0 wins")
+        draw_board()
+        win = True
