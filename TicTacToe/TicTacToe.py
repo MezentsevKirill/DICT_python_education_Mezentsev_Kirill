@@ -66,3 +66,97 @@ elif "_" in game_list and game_list[0:3] != x and o or "_" not in game_list and 
             or "_" in game_list and game_list[0:None:4] != x and o\
             or "_" in game_list and game_list[-7:-1:2] != x and o:
     print("Game not finished")
+# Stage 4
+game_list.clear()
+user_str = str(input("Enter cells: "))
+game_list.append(user_str)
+game_list = list(game_list[0])
+draw_board()
+coord_list = [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)]
+
+
+def handle_turn():
+    valid = False
+    while not valid:
+        try:
+            z = int(input("Choose a position 1 - 3: "))
+            y = int(input("Choose a position 1 - 3: "))
+        except ValueError:
+            print(print("You should enter numbers!"))
+            valid = False
+        else:
+            if z <= 3 and y <= 3:
+                if z == 1:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 1:
+                    position = z * int(y) + 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 2:
+                    position = int(z) * int(y)
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 2 and int(y) == 3:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 1:
+                    position = z * int(y) + 3
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 2:
+                    position = z * int(y) + 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+                elif z == 3 and int(y) == 3:
+                    position = z * int(y) - 1
+                    new_position = game_list[position]
+                    if new_position == "_":
+                        game_list[position] = "X"
+                        valid = True
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                        valid = False
+            else:
+                print("Coordinates should be from 1 to 3!")
+                valid = False
+
+
+def play_game():
+    handle_turn()
+    draw_board()
+
+
+play_game()
