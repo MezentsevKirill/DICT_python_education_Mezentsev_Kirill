@@ -65,3 +65,77 @@ def second_calculator():
 
 
 second_calculator()
+# Stage 4
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--types", type=str)
+parser.add_argument("--principal", type=int)
+parser.add_argument("--periods", type=int)
+parser.add_argument("--interest", type=float)
+parser.add_argument("--payment", type=float)
+args = parser.parse_args()
+types = args.types
+principal = args.principal
+periods = args.periods
+interest = args.interest
+payment = args.payment
+if types == "annuity":
+    if types is not None and principal is not None and interest is not None and payment is not None:
+        if principal > 0 and interest > 0 and payment > 0:
+            i = interest / (12 * 100)
+            import math
+            n = math.log(payment / (payment - i * principal), i+1)
+            if math.ceil(n) // 12 >= 1 and math.ceil(n) % 12 >= 1:
+                print("It will take", math.ceil(n) // 12, "years and", math.ceil(n) % 12, "months to repay this loan!")
+            elif math.ceil(n) // 12 >= 1 and math.ceil(n) % 12 == 0:
+                print("It will take", math.ceil(n) // 12, "years to repay this loan!")
+            elif math.ceil(n) // 12 == 0 and math.ceil(n) % 12 >= 1:
+                print("It will take", math.ceil(n) % 12, "months to repay this loan!")
+            print("Overpayment =", math.ceil(payment) * math.ceil(n) - math.ceil(principal))
+        else:
+            print("Incorrect parameters")
+    elif types is not None and principal is not None and interest is not None and periods is not None:
+        if principal > 0 and periods > 0 and interest > 0:
+            import math
+            i = interest / (12 * 100)
+            payment = principal * ((i * (1 + i) ** periods) / ((1 + i) ** periods - 1))
+            print("Your monthly payment =", math.ceil(payment))
+            print("Overpayment =", math.ceil(payment) * periods - math.ceil(principal))
+        else:
+            print("Incorrect parameters")
+    elif types is not None and payment is not None and interest is not None and periods is not None:
+        if periods > 0 and interest > 0 and payment > 0:
+            import math
+            i = interest / (12 * 100)
+            principal = payment / ((i * (1 + i) ** periods) / ((1 + i) ** periods - 1))
+            print("Your loan principal =", math.ceil(principal))
+            print("Overpayment =", math.ceil(payment) * periods - math.ceil(principal))
+        else:
+            print("Incorrect parameters")
+    elif periods and principal is None or periods and payment is None or periods and interest is None\
+            or principal and interest is None or principal and payment is None:
+        print("Incorrect parameters")
+elif types == "diff":
+    if types is not None and principal is not None and interest is not None and periods is not None:
+        if principal > 0 and periods > 0 and interest > 0:
+            import math
+            i = interest / (12 * 100)
+            months = 1
+            m = 1
+            overpayment = 0
+            while m <= periods:
+                d = principal / periods + i * (principal - ((principal * (m - 1)) / periods))
+                print("Month", months, ": payment is", math.ceil(d))
+                m += 1
+                months += 1
+                overpayment += d
+            print("Overpayment =", math.ceil(overpayment) - principal)
+        else:
+            print("Incorrect parameters")
+    elif types == "diff" and payment is not None:
+        print("Incorrect parameters")
+    elif periods and principal is None or periods and interest is None\
+            or principal and interest is None:
+        print("Incorrect parameters")
+elif types is None:
+    print("Incorrect parameters")
