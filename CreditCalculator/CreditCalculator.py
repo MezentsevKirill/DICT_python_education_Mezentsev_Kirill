@@ -36,7 +36,7 @@ def second_calculator():
     if calculate == new_calculate_list[0]:
         p = int(input("Enter the loan principal:\n> "))
         a = int(input("Enter the monthly payment:\n> "))
-        loan_interest = int(input("Enter the loan interest:\n > "))
+        loan_interest = int(input("Enter the loan interest:\n> "))
         import math
         i = loan_interest / (12 * 100)
         n = math.log(a / (a - i * p), i+1)
