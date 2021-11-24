@@ -84,11 +84,12 @@ for i in range(n):
     for j in range(m):
         s.append(a[i][j] * const)
 draw_matrix()
-# Stage 3,4
-calculate_list = [1, 2, 3, 0, 4]
+# Stage 3,4,5
+calculate_list = [1, 2, 3, 0, 4, 5]
 calculate = None
 while calculate != calculate_list[3]:
-    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n0. Exit")
+    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n"
+          "5. Calculate a determinant\n0. Exit")
     calculate = int(input("Your choice: > "))
     if calculate == calculate_list[0]:
         n, m = map(int, input("Enter the number of lines and columns\n> ").split())
@@ -193,4 +194,17 @@ while calculate != calculate_list[3]:
                 print([a[2][0], a[2][1], a[2][2]])
                 print([a[1][0], a[1][1], a[1][2]])
                 print([a[0][0], a[0][1], a[0][2]])
-
+    if calculate == calculate_list[5]:
+        a.clear()
+        n, m = map(int, input("Enter the number of lines and columns\n> ").split())
+        for i in range(n):
+            a.append(list(map(int, input().split())))
+            for j in range(m):
+                continue
+        if len(a) == 2:
+            det = a[0][0] * a[1][1] - a[1][0] * a[0][1]
+            print("The result is:\n", det)
+        if len(a) == 3:
+            det = a[0][0] * (a[1][1] * a[2][2] - a[2][1] * a[1][2]) - a[0][1] * (a[1][0] * a[2][2] - a[2][0] * a[1][2])\
+                  + a[0][2] * (a[1][0] * a[2][1] - a[2][0] * a[1][1])
+            print("The result is:\n", det)
