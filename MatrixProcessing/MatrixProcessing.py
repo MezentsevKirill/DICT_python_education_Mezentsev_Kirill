@@ -84,11 +84,11 @@ for i in range(n):
     for j in range(m):
         s.append(a[i][j] * const)
 draw_matrix()
-# Stage 3
-calculate_list = [1, 2, 3, 0]
+# Stage 3,4
+calculate_list = [1, 2, 3, 0, 4]
 calculate = None
 while calculate != calculate_list[3]:
-    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit")
+    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n0. Exit")
     calculate = int(input("Your choice: > "))
     if calculate == calculate_list[0]:
         n, m = map(int, input("Enter the number of lines and columns\n> ").split())
@@ -151,3 +151,46 @@ while calculate != calculate_list[3]:
             draw_matrix_v2()
         else:
             print("The operation cannot be performed")
+    if calculate == calculate_list[4]:
+        transposition_list = [1, 2, 3, 4]
+        print("1. Main diagonal\n2. Side diagonal\n3. Vertical line\n4. Horizontal line")
+        transposition = int(input("Your choice: > "))
+        a.clear()
+        n, m = map(int, input("Enter the number of lines and columns\n> ").split())
+        for i in range(n):
+            a.append(list(map(int, input().split())))
+            for j in range(m):
+                continue
+        if transposition == transposition_list[0]:
+            if len(a) == 2:
+                print([a[0][0], a[1][0]])
+                print([a[0][1], a[1][1]])
+            if len(a) == 3:
+                print([a[0][0], a[1][0], a[2][0]])
+                print([a[0][1], a[1][1], a[2][1]])
+                print([a[0][2], a[1][2], a[2][2]])
+        if transposition == transposition_list[1]:
+            if len(a) == 2:
+                print([a[1][1], a[0][1]])
+                print([a[1][0], a[0][0]])
+            if len(a) == 3:
+                print([a[2][2], a[1][2], a[0][2]])
+                print([a[2][1], a[1][1], a[0][1]])
+                print([a[2][0], a[1][0], a[0][0]])
+        if transposition == transposition_list[2]:
+            if len(a) == 2:
+                print([a[0][1], a[0][0]])
+                print([a[1][1], a[1][0]])
+            if len(a) == 3:
+                print([a[0][2], a[0][1], a[0][0]])
+                print([a[1][2], a[1][1], a[1][0]])
+                print([a[2][2], a[2][1], a[2][0]])
+        if transposition == transposition_list[3]:
+            if len(a) == 2:
+                print([a[1][0], a[1][1]])
+                print([a[0][0], a[0][1]])
+            if len(a) == 3:
+                print([a[2][0], a[2][1], a[2][2]])
+                print([a[1][0], a[1][1], a[1][2]])
+                print([a[0][0], a[0][1], a[0][2]])
+
