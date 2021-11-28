@@ -1,5 +1,7 @@
 # Stage 1
-# import math as math
+a = []
+b = []
+s = []
 
 
 def draw_matrix():
@@ -52,42 +54,7 @@ def draw_matrix_v2():
         print(s[4])
 
 
-n, m = map(int, input("Enter the number of lines and columns\n> ").split())
-a = []
-for i in range(n):
-    a.append(list(map(int, input().split())))
-    for j in range(m):
-        continue
-n, m = map(int, input("Enter the number of lines and columns\n> ").split())
-b = []
-for i in range(n):
-    b.append(list(map(int, input().split())))
-    for j in range(m):
-        continue
-a_unpacked = [j for i in a for j in i]
-b_unpacked = [j for i in b for j in i]
-if len(a_unpacked) == len(b_unpacked):
-    s = []
-    for i in range(n):
-        for j in range(m):
-            s.append(a[i][j] + b[i][j])
-    draw_matrix()
-else:
-    print("ERROR")
-# Stage 2
-n, m = map(int, input("Enter the number of lines and columns\n> ").split())
-a.clear()
-s = []
-for i in range(n):
-    a.append(list(map(int, input().split())))
-    for j in range(m):
-        continue
-const = int(input())
-for i in range(n):
-    for j in range(m):
-        s.append(a[i][j] * const)
-draw_matrix()
-# Stage 3,4,5,6
+# Stage 1,2,3,4,5,6
 calculate_list = [1, 2, 3, 0, 4, 5, 6]
 calculate = None
 while calculate != calculate_list[3]:
@@ -230,7 +197,7 @@ while calculate != calculate_list[3]:
                 print("The result is:\n", "%.2f" % new_a[0], "%.2f" % new_a[1], "\n", "%.2f" % new_a[2],
                       "%.2f" % new_a[3])
         if len(a) == 3:
-            det = a[0][0] * (a[1][1] * a[2][2] - a[2][1] * a[1][2]) - a[0][1] * (a[1][0] * a[2][2] - a[2][0] * a[1][2]) \
+            det = a[0][0] * (a[1][1] * a[2][2] - a[2][1] * a[1][2]) - a[0][1] * (a[1][0] * a[2][2] - a[2][0] * a[1][2])\
                   + a[0][2] * (a[1][0] * a[2][1] - a[2][0] * a[1][1])
             if det != 0:
                 t = [a[0][0], a[1][0], a[2][0], a[0][1], a[1][1], a[2][1], a[0][2], a[1][2], a[2][2]]
@@ -245,6 +212,3 @@ while calculate != calculate_list[3]:
                 print("The result is:\n", "%.2f" % new_a[0], "%.2f" % new_a[1], "%.2f" % new_a[2], "\n",
                       "%.2f" % new_a[3], "%.2f" % new_a[4], "%.2f" % new_a[5], "\n",
                       "%.2f" % new_a[6], "%.2f" % new_a[7], "%.2f" % new_a[8])
-
-
-
