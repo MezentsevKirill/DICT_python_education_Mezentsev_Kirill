@@ -1,4 +1,4 @@
-# Stage 1,2
+# Stage 1,2,3,4
 import random
 number = int(input("Enter the number of friends joining (including you):\n> "))
 d = {}
