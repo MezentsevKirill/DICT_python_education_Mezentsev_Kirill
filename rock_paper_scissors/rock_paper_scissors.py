@@ -1,6 +1,7 @@
 # Stage 1, 2, 3, 4, 5
 import random
-action_list = ["rock", "paper", "scissors", "!exit", "!rating"]
+func_list = ["!exit", "!rating"]
+action_list = ["rock", "paper", "scissors"]
 result = ["lose", "draw", "win"]
 user_name = input("Enter yor name:> ")
 print("Hello", user_name)
@@ -23,18 +24,12 @@ win_list = []
 print("Okay, let's start")
 if character[0] == '':
     user_str = None
-    while user_str != action_list[3]:
+    while user_str != func_list[0]:
         user_str = input("Enter action\n> ")
         computer_str = random.choice(action_list)
         # Draw
-        if user_str == action_list[0] and computer_str == action_list[0]:
-            print("There is a draw", (action_list[0]))
-            rating += 50
-        elif user_str == action_list[1] and computer_str == action_list[1]:
-            print("There is a draw", (action_list[1]))
-            rating += 50
-        elif user_str == action_list[2] and computer_str == action_list[2]:
-            print("There is a draw", (action_list[2]))
+        if user_str == computer_str:
+            print("There is a draw", user_str)
             rating += 50
         # Lose
         if user_str == action_list[0] and computer_str == action_list[1]:
@@ -54,14 +49,14 @@ if character[0] == '':
             print("Well done. The computer chose", (action_list[1]), "and failed")
             rating += 100
         # Invalid input
-        if user_str not in action_list:
+        elif user_str not in action_list and user_str not in func_list:
             print("Invalid input")
-        elif user_str == action_list[4]:
+        if user_str == func_list[1]:
             print("Your rating:", rating)
     print("Bye!")
 else:
     user_str = None
-    while user_str != action_list[3]:
+    while user_str != func_list[0]:
         user_str = input("Enter action\n> ")
         computer_str = random.choice(character)
         if user_str in character:
@@ -70,10 +65,10 @@ else:
                 win_list.append(elem)
             for elem2 in character[:i]:
                 win_list.append(elem2)
-        elif user_str in action_list:
-            if user_str not in action_list:
+        elif user_str in func_list:
+            if user_str not in character and user_str not in func_list:
                 print("Invalid input")
-            if user_str == action_list[4]:
+            if user_str == func_list[1]:
                 print("Your rating:", rating)
         # Draw
         if user_str == computer_str:
@@ -91,3 +86,4 @@ else:
             rating += 100
             win_list.clear()
     print("Bye!")
+    
