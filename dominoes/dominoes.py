@@ -1,4 +1,5 @@
 import random
+print("=" * 70)
 game_list = []
 for j in range(7):
     game_list.append([j, j])
@@ -12,9 +13,8 @@ for i in player_pieces:
 computer_pieces = random.sample(game_list, 7)
 for i in computer_pieces:
     game_list.remove(i)
-print("Stock pieces:", game_list)
-print("Player pieces:", player_pieces)
-print("Computer pieces:", computer_pieces)
+print("Stock size:", len(game_list))
+print("Computer pieces:", len(computer_pieces))
 snake = []
 
 
@@ -33,14 +33,29 @@ def start_pieces():
 
 start_pieces()
 for elem in snake:
-    print("Domino snake:", elem)
+    print(elem)
 
 
 def status_check():
-    if elem in player_pieces:
-        print("Status: player")
+    if elem not in player_pieces and elem not in computer_pieces:
+        print("Status: It's your turn to make a move. Enter your command.")
     elif elem in computer_pieces:
-        print("Status: computer")
+        print("Status: Computer is about to make a move. Press Enter to continue...")
+        computer_pieces.remove(elem)
 
 
+print("Your pieces:")
+
+
+def draw_player_pieces():
+    for elem1 in snake:
+        if elem1 in player_pieces:
+            player_pieces.remove(elem1)
+    num = 0
+    while num < len(player_pieces):
+        num += 1
+        print(str(num) + ":", player_pieces[num-1])
+
+
+draw_player_pieces()
 status_check()
