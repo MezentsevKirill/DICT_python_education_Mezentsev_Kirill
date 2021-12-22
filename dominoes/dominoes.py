@@ -40,23 +40,51 @@ def draw_player_pieces():
 def check_input():
     global counter
     print("Status: It's your turn to make a move. Enter your command.")
-    user_number = int(input("Enter command:\n> "))
-    if user_number > 0:
-        try:
-            snake.append(player_pieces[user_number - 1])
-            player_pieces.remove(player_pieces[user_number - 1])
-        except IndexError:
+    valid = False
+    while not valid:
+        user_number = int(input("Enter command:\n> "))
+        if user_number > 0:
+            try:
+                if snake[-1][1] in player_pieces[user_number - 1]:
+                    if snake[-1][1] == player_pieces[user_number - 1][0]:
+                        snake.append(player_pieces[user_number - 1])
+                        player_pieces.remove(player_pieces[user_number - 1])
+                        valid = True
+                    else:
+                        snake.append(list(reversed(player_pieces[user_number - 1])))
+                        player_pieces.remove(player_pieces[user_number - 1])
+                        valid = True
+                else:
+                    print("Illegal move.Please try again.")
+                    valid = False
+            except IndexError:
+                print("Invalid input. Please try again.")
+                valid = False
+        elif user_number < 0:
+            try:
+                if snake[0][0] in player_pieces[(user_number * -1) - 1]:
+                    if snake[0][0] == player_pieces[(user_number * -1) - 1][1]:
+                        snake.insert(0, player_pieces[(user_number * -1) - 1])
+                        player_pieces.remove(player_pieces[(user_number * -1) - 1])
+                        valid = True
+                    else:
+                        snake.insert(0, list(reversed(player_pieces[(user_number * -1) - 1])))
+                        player_pieces.remove(player_pieces[(user_number * -1) - 1])
+                        valid = True
+                else:
+                    print("Illegal move.Please try again.")
+                    valid = False
+            except IndexError:
+                print("Invalid input. Please try again.")
+                valid = False
+        elif user_number == 0:
+            added_piece = random.choice(game_list)
+            player_pieces.append(added_piece)
+            game_list.remove(added_piece)
+            valid = True
+        elif user_number in float:
             print("Invalid input. Please try again.")
-    elif user_number < 0:
-        snake.insert(0, player_pieces[(user_number * -1) - 1])
-        player_pieces.remove(player_pieces[(user_number * -1) - 1])
-    elif user_number == 0:
-        added_piece = random.choice(game_list)
-        player_pieces.append(added_piece)
-        game_list.remove(added_piece)
-    elif user_number in float:
-        print("Invalid input. Please try again.")
-    counter += 1
+        counter += 1
 
 
 def status_check():
@@ -66,18 +94,35 @@ def status_check():
     else:
         print("Status: Computer is about to make a move. Press Enter to continue...")
         enter = input("Enter command:\n> ")
-        computer_number = random.randint(-len(computer_pieces), len(computer_pieces))
-        if computer_number > 0:
-            snake.append(computer_pieces[computer_number - 1])
-            computer_pieces.remove(computer_pieces[computer_number - 1])
-        elif computer_number < 0:
-            snake.insert(0, computer_pieces[(computer_number * -1) - 1])
-            computer_pieces.remove(computer_pieces[(computer_number * -1) - 1])
-        elif computer_number == 0:
-            added_piece = random.choice(game_list)
-            computer_pieces.append(added_piece)
-            game_list.remove(added_piece)
-        counter += 1
+        valid = False
+        while not valid:
+            computer_number = random.randint(-len(computer_pieces), len(computer_pieces))
+            if computer_number > 0:
+                if snake[-1][1] in computer_pieces[computer_number - 1]:
+                    if snake[-1][1] == computer_pieces[computer_number - 1][0]:
+                        snake.append(computer_pieces[computer_number - 1])
+                        computer_pieces.remove(computer_pieces[computer_number - 1])
+                        valid = True
+                    else:
+                        snake.append(list(reversed(computer_pieces[computer_number - 1])))
+                        computer_pieces.remove(computer_pieces[computer_number - 1])
+                        valid = True
+            elif computer_number < 0:
+                if snake[0][0] in computer_pieces[(computer_number * -1) - 1]:
+                    if snake[0][0] == computer_pieces[(computer_number * -1) - 1][1]:
+                        snake.insert(0, computer_pieces[(computer_number * -1) - 1])
+                        computer_pieces.remove(computer_pieces[(computer_number * -1) - 1])
+                        valid = True
+                    else:
+                        snake.insert(0, list(reversed(computer_pieces[(computer_number * -1) - 1])))
+                        computer_pieces.remove(computer_pieces[(computer_number * -1) - 1])
+                        valid = True
+            elif computer_number == 0:
+                added_piece = random.choice(game_list)
+                computer_pieces.append(added_piece)
+                game_list.remove(added_piece)
+                counter += 1
+            counter += 1
 
 
 # All pieces
