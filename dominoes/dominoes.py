@@ -20,11 +20,9 @@ def start_status_check():
     for elem in snake:
         if elem not in player_pieces and elem not in computer_pieces:
             print("Status: It's your turn to make a move. Enter your command.")
-            counter += 2
         elif elem in computer_pieces:
             print("Status: Computer is about to make a move. Press Enter to continue...")
             computer_pieces.remove(elem)
-            counter += 1
 
 
 def draw_player_pieces():
@@ -84,13 +82,13 @@ def check_input():
             valid = True
         elif user_number in float:
             print("Invalid input. Please try again.")
-        counter += 1
 
 
 def status_check():
     global counter
     if counter % 2 == 0:
         check_input()
+        counter += 1
     else:
         print("Status: Computer is about to make a move. Press Enter to continue...")
         enter = input("Enter command:\n> ")
@@ -107,6 +105,8 @@ def status_check():
                         snake.append(list(reversed(computer_pieces[computer_number - 1])))
                         computer_pieces.remove(computer_pieces[computer_number - 1])
                         valid = True
+                else:
+                    valid = False
             elif computer_number < 0:
                 if snake[0][0] in computer_pieces[(computer_number * -1) - 1]:
                     if snake[0][0] == computer_pieces[(computer_number * -1) - 1][1]:
@@ -117,12 +117,13 @@ def status_check():
                         snake.insert(0, list(reversed(computer_pieces[(computer_number * -1) - 1])))
                         computer_pieces.remove(computer_pieces[(computer_number * -1) - 1])
                         valid = True
+                else:
+                    valid = False
             elif computer_number == 0:
                 added_piece = random.choice(game_list)
                 computer_pieces.append(added_piece)
                 game_list.remove(added_piece)
-                counter += 1
-            counter += 1
+        counter += 1
 
 
 # All pieces
@@ -148,9 +149,11 @@ snake = []
 start_pieces()
 start_status_check()
 counter = 0
+print(counter)
 win = False
 while not win:
     print("=" * 70)
+    print(counter)
     print("Stock size:", len(game_list))
     print("Computer pieces:", len(computer_pieces))
     if len(snake) <= 6:
@@ -161,6 +164,7 @@ while not win:
     print("Your pieces:")
     draw_player_pieces()
     status_check()
+
 
     def check_win():
         global win
