@@ -1,5 +1,7 @@
 from random import randint
 import random
+counter = 0
+n = 0
 
 
 def random_choice():
@@ -16,13 +18,23 @@ def random_choice():
         print(random_number1, "*",  random_number2, "")
 
     def answers_check():
-        user_choice = int(input("> "))
-        if user_choice == random_operations:
-            print("Right!")
+        try:
+            user_choice = int(input("> "))
+        except ValueError:
+            print("Incorrect format")
         else:
-            print("Wrong!")
+            if user_choice == random_operations:
+                print("Right!")
+                global n
+                n += 1
+            else:
+                print("Wrong!")
+            global counter
+            counter += 1
 
     answers_check()
 
 
-random_choice()
+while counter < 5:
+    random_choice()
+print("Your mark is", n, "/ 5")
