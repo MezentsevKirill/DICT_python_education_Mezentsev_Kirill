@@ -37,6 +37,26 @@ def link():
     main_text.append(f"[{label}]({url})")
 
 
+def ordered_list():
+    rows = int(input("Number of rows: >"))
+    if rows <= 0:
+        print("The number of rows should be greater than zero")
+    else:
+        for i in range(1, rows + 1):
+            user_text = input(f"Row #{i}:>")
+            main_text.append(f"{i}.{user_text}")
+
+
+def unordered_list():
+    rows = int(input("Number of rows: >"))
+    if rows <= 0:
+        print("The number of rows should be greater than zero")
+    else:
+        for i in range(1, rows + 1):
+            user_text = input(f"Row #{i}:>")
+            main_text.append(f"*{user_text}")
+
+
 user_formatter = None
 while user_formatter != command_list[9]:
     user_formatter = input("Choose a formatter: > ")
@@ -52,6 +72,10 @@ while user_formatter != command_list[9]:
         link()
     elif user_formatter == command_list[5]:
         new_line()
+    elif user_formatter == command_list[6]:
+        ordered_list()
+    elif user_formatter == command_list[7]:
+        unordered_list()
     elif user_formatter not in command_list:
         print("Unknown formatting type or command")
     elif user_formatter == command_list[8]:
